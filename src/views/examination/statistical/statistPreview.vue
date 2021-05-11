@@ -56,7 +56,7 @@
 
 
 <script>
-import { stPreviewlList, deptList, download } from '@/api/examination/selftest'
+import { stPreviewlList, download } from '@/api/examination/selftest'
 import treeselect from "@/components/treeselect";
 
 export default {

@@ -6,7 +6,7 @@
         </el-breadcrumb>
         <div class="pageStyle">
             <el-table :data="tableData" stripe style="width:100%;margin-top: 10px;">
-                <el-table-column type="selection" width="50" align="center"></el-table-column>
+                <!-- <el-table-column type="selection" width="50" align="center"></el-table-column> -->
                 <el-table-column type="index" label="序号" width="50px" align="center"></el-table-column>
                 <el-table-column prop="NAME" label="试卷名称" align="center"></el-table-column>
                 <el-table-column prop="TIME" label="考试时长" align="center"></el-table-column>

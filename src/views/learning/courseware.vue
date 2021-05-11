@@ -14,6 +14,11 @@
             <el-table-column prop="USER_NAME" label="登录账号" align="center" :show-overflow-tooltip="true"></el-table-column>
             <el-table-column prop="NICK_NAME" label="登录名称" align="center" :show-overflow-tooltip="true"></el-table-column>
             <el-table-column prop="YN" label="学习状态" align="center" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column label="操作" align="center">
+                <template slot-scope="scope">
+                    <div class="preview" @click="clickRow(scope.row)">查 看</div>
+                </template>
+            </el-table-column>
         </el-table>
         <div class="all-block-pager">
             <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryInfo.pageNum" :page-size="10" class="pagination" layout="total, prev, pager, next, jumper" :total="total">
@@ -58,7 +63,6 @@ export default {
             queryInfo: {
                 pageSize: 5,
                 pageNum: 1,
-                name: "",
                 subjectid: "",
                 deptid: ""
             },
@@ -79,7 +83,6 @@ export default {
     },
     created () {
         this.getTableDataList() // 列表
-        this.getOptionsDepartment() // 获取部门数据
     },
     methods: {
         getTableDataList () { // 列表
@@ -95,6 +98,8 @@ export default {
         },
         search () {  // 查询
             this.queryInfo.deptid = this.$refs.headerChild.department
+
+            console.log(this.queryInfo);
             this.queryInfo.pageNum = 1
             this.getTableDataList()
         },
@@ -104,15 +109,6 @@ export default {
                 const del_row = this.rowData.shift()
                 this.$refs.multipleTable.toggleRowSelection(del_row, false)
             }
-        },
-        getOptionsDepartment () { // 获取部门数据
-            deptList().then(res => {
-                if (res.code == 200) {
-                    this.optionsDepartment = res.data
-                } else {
-                    this.msgError(res.msg)
-                }
-            })
         },
         getClassification () { // 课目分类 
             classification().then(res => {
@@ -124,7 +120,6 @@ export default {
         clickRow (row, column, event) { //点击行
             this.queryInfoDialog.createBy = row.USER_ID
             dialogTableDataList(this.queryInfoDialog).then(res => {
-                console.log(res);
             })
             this.dialogFormVisible = true
         },

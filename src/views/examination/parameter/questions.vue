@@ -230,15 +230,15 @@ export default {
             }
         },
         clickRow (row, column, event) { //点击行
-            let index = this.rowData.findIndex(item => {
-                return item.id == row.id
-            });
-            if (index == -1) {
-                this.$refs.multipleTable.toggleRowSelection(row, true);
-            } else {
-                // 如果已存在，设置未选状态，并在list中删除这条数据 
-                this.$refs.multipleTable.toggleRowSelection(row, false)
-            }
+            // let index = this.rowData.findIndex(item => {
+            //     return item.id == row.id
+            // });
+            // if (index == -1) {
+            //     this.$refs.multipleTable.toggleRowSelection(row, true);
+            // } else {
+            //     // 如果已存在，设置未选状态，并在list中删除这条数据 
+            //     this.$refs.multipleTable.toggleRowSelection(row, false)
+            // }
         },
         tableDataSelect (val) {  //复选框改变
             this.rowData = val

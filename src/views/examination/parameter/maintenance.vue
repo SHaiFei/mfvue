@@ -45,8 +45,8 @@
                     <el-table-column prop="c1" label="试题数量" align="center" width="150px"></el-table-column>
                     <el-table-column prop="createTime" label="添加时间" align="center"></el-table-column>
                     <el-table-column label="操作" align="center">
-                        <template>
-                            <div class="preview" @click="detailedContent">添加试卷</div>
+                        <template slot-scope="scope">
+                            <div class="preview" @click="detailedContent(scope.row)">添加试卷</div>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -165,15 +165,15 @@ export default {
             }
         },
         clickRow (row, column, event) { //点击行
-            let index = this.rowData.findIndex(item => {
-                return item.id == row.id
-            });
-            if (index == -1) {
-                this.$refs.multipleTable.toggleRowSelection(row, true);
-            } else {
-                // 如果已存在，设置未选状态，并在list中删除这条数据 
-                this.$refs.multipleTable.toggleRowSelection(row, false)
-            }
+            // let index = this.rowData.findIndex(item => {
+            //     return item.id == row.id
+            // });
+            // if (index == -1) {
+            //     this.$refs.multipleTable.toggleRowSelection(row, true);
+            // } else {
+            //     // 如果已存在，设置未选状态，并在list中删除这条数据 
+            //     this.$refs.multipleTable.toggleRowSelection(row, false)
+            // }
         },
         tableDataSelect (val) {  //复选框改变
             this.rowData = val

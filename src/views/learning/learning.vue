@@ -9,9 +9,9 @@
             <el-row class="elRow">
                 <div class="elRowLeft">
                     <span class="font-12 spanText">课目名称</span>
-                    <el-input v-model="form.lawName" clearable class="elinput200"></el-input>
+                    <el-input v-model="queryInfo.name" clearable class="elinput200"></el-input>
                     <span class="font-12 spanText">时间</span>
-                    <el-date-picker v-model="form.publicYear" type="year" value-format="yyyy" class="elinput200" placeholder="选择年" clearable>
+                    <el-date-picker v-model="queryInfo.yyyy" type="year" value-format="yyyy" class="elinput200" placeholder="选择年" clearable>
                     </el-date-picker>
                     <el-button type="primary" size="small" icon="el-icon-search" @click="search()">查询</el-button>
                 </div>
@@ -76,7 +76,9 @@ export default {
             queryInfo: {
                 pageNum: 1,
                 pageSize: 5,
-                muluid: ""
+                muluid: "",
+                name: "",
+                yyyy: ""
             },
             courseware: false,
             coursewareObj: {

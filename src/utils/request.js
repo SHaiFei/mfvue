@@ -14,8 +14,8 @@ const service = axios.create({
     // 修改的时候把   statisPreview  文件导出的地址也修改了
     // baseURL: 'http://47.105.90.162:8081/',
     //   baseURL: 'http://192.168.1.51:8081',
-      baseURL: 'http://192.168.1.66:8081',
-    //   baseURL: 'http://1.119.133.142:21481',
+    //   baseURL: 'http://192.168.1.66:8081',
+      baseURL: 'http://1.119.133.142:21481',
     // 超时
     timeout: 10000
 })

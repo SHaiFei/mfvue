@@ -18,8 +18,6 @@
                     </el-select>
                     <el-button type="primary" size="small" icon="el-icon-search" @click="search">查询</el-button>
                 </div>
-                <div class="buttons">
-                </div>
             </el-row>
             <el-table ref="multipleTable" stripe :data="tableData" style="width: 100%" @row-click="clickRow" @selection-change="tableDataSelect">
                 <el-table-column type="selection" align="center" width="50"></el-table-column>

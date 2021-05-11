@@ -9,7 +9,6 @@
             <el-row class="elRow">
                 <div class="elRowLeft">
                     <span class="font-12 spanText">课目名称</span>
-                    <!-- <el-input v-model="queryInfo.name" clearable class="elinput200"></el-input> -->
                     <el-select v-model="queryInfo.muluid" placeholder="请选择" clearable>
                         <el-option v-for='(item,index) in this.classificationList' :key='item.ID' :label="item.NAME" :value="item.ID" v-cloak>
                         </el-option>
@@ -22,6 +21,11 @@
                 <el-table-column prop="NAME" label="课目名称" align="center" :show-overflow-tooltip="true"></el-table-column>
                 <el-table-column prop="YXX" label="已学习" align="center" :show-overflow-tooltip="true"></el-table-column>
                 <el-table-column prop="WXX" label="未学习" align="center" :show-overflow-tooltip="true"></el-table-column>
+                <el-table-column label="操作" align="center">
+                    <template slot-scope="scope">
+                        <div class="preview" @click="clickRow(scope.row)">查 看</div>
+                    </template>
+                </el-table-column>
             </el-table>
             <div class="all-block-pager">
                 <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryInfo.pageNum" :page-size="10" class="pagination" layout="total, prev, pager, next, jumper" :total="total">
@@ -30,7 +34,7 @@
 
             <!--  课件列表  -->
             <div v-if="courseware">
-                <courseware :coursewareId="coursewareId" ></courseware>
+                <courseware :coursewareId="coursewareId"></courseware>
             </div>
         </div>
     </div>
@@ -43,7 +47,7 @@ import { classification } from '@/api/examination/subject'
 import courseware from './courseware'
 
 export default {
-    components:{
+    components: {
         courseware
     },
     data () {
@@ -51,7 +55,6 @@ export default {
             queryInfo: {
                 pageSize: 5,
                 pageNum: 1,
-                name: "",
                 muluid: ""
             },
             tableData: [],//表格数据
@@ -78,11 +81,12 @@ export default {
             });
         },
         search () {  // 查询
+            this.courseware = false
             this.getTableDataList()
         },
-        getClassification(){ // 课目分类
+        getClassification () { // 课目分类
             classification().then(res => {
-                if (res.code == 200){
+                if (res.code == 200) {
                     this.classificationList = res.data
                 }
             })

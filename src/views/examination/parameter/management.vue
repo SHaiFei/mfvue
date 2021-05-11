@@ -22,9 +22,9 @@
                 <div class="buttons">
                     <el-button type="primary" size="small" icon="el-icon-plus" @click="add">增加</el-button>
                     <el-button type="danger" size="small" icon="el-icon-delete" @click="del">删除</el-button>
-                    <el-button type="primary" size="small" icon="el-icon-s-promotion" @click="release">发布</el-button>
-                    <el-button type="primary" size="small" icon="" @click="cancelRelease">取消发布</el-button>
-                    <el-button type="primary" size="small" icon="" @click="preview">查看</el-button>
+                    <el-button type="success" size="small" icon="el-icon-s-promotion" @click="release">发布</el-button>
+                    <el-button type="warning" size="small" icon="" @click="cancelRelease">取消发布</el-button>
+                    <el-button type="primary" size="small" icon="el-icon-view" @click="preview">查看</el-button>
                 </div>
             </el-row>
             <el-table :data="tableData" stripe style="width:100%;margin-top: 10px;" @row-click="clickRow" ref="multipleTable" @selection-change='tableDataSelect'>
@@ -177,15 +177,15 @@ export default {
             this.getTableDataList()
         },
         clickRow (row, column, event) { //点击行
-            let index = this.rowData.findIndex(item => {
-                return item.id == row.id
-            });
-            if (index == -1) {
-                this.$refs.multipleTable.toggleRowSelection(row, true);
-            } else {
-                // 如果已存在，设置未选状态，并在list中删除这条数据 
-                this.$refs.multipleTable.toggleRowSelection(row, false)
-            }
+            // let index = this.rowData.findIndex(item => {
+            //     return item.id == row.id
+            // });
+            // if (index == -1) {
+            //     this.$refs.multipleTable.toggleRowSelection(row, true);
+            // } else {
+            //     // 如果已存在，设置未选状态，并在list中删除这条数据 
+            //     this.$refs.multipleTable.toggleRowSelection(row, false)
+            // }
         },
         tableDataSelect (val) {  //复选框改变
             this.rowData = val
